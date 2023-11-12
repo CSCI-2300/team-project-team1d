@@ -1,8 +1,9 @@
 package connectFour.control;
 
+import connectFour.ControllerInterface;
 import connectFour.model.*;
 
-public class TwoPlayerController 
+public class TwoPlayerController implements ControllerInterface
 {
     ConnectFourGrid grid;
     ConnectFourPiece currentPiece;

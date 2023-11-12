@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args)
     {
         ConnectFourGrid grid = new ConnectFourGrid();
-        TwoPlayerController controller = new TwoPlayerController(grid);
+        ControllerInterface controller = new TwoPlayerController(grid);
 
         Random rand = new Random();
         int input = 1;

@@ -6,10 +6,10 @@ public class ConnectFourGrid
 
     public ConnectFourGrid()
     {
-        this.grid = new ConnectFourPiece[6][7];
+        this.grid = new ConnectFourPiece[6][7];     //6 rows and 7 columns
     }
 
-    public int getNextSpace(int column)
+    public int getNextSpace(int column)     //returns index of lowest open space in column or -1 if column is full
     {
         for(int row = 5; row >= 0; row--)
         {
@@ -21,7 +21,7 @@ public class ConnectFourGrid
         return -1;
     }
 
-    public boolean placePiece(ConnectFourPiece piece, int column)
+    public boolean placePiece(ConnectFourPiece piece, int column)   //returns true if piece is placed successfully
     {
         int row = getNextSpace(column);
         if(row != -1)
@@ -36,7 +36,7 @@ public class ConnectFourGrid
         
     }
 
-    public void show()
+    public void show()      //Displays board to terminal for testing.
     {
         for(int row = 0; row < 6; row ++)
         {
