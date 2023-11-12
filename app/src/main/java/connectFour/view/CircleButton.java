@@ -1,4 +1,4 @@
-package view.connectFourPrototype;
+package connectFour.view;
 
 import java.awt.*;
 import java.awt.geom.*;

@@ -1,4 +1,4 @@
-package view.connectFourPrototype;
+package connectFour.view;
 
 import javax.swing.*;
 import java.awt.*;
