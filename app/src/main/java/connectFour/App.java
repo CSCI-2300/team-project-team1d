@@ -12,15 +12,14 @@ public class App {
 
         Random rand = new Random();
         int input = 1;
-        while(!grid.isFull() || grid.getWinner()==null)
+        while(!grid.isFull() && grid.getWinner()==null)
         {
             controller.userPressed(input);
             grid.show();
             input = rand.nextInt(7);
         }
-        if(grid.getWinner() != null){
-            System.out.println("Winner is: " + grid.getWinner());
-        }
+        
+        System.out.println("Winner is: " + grid.getWinner());
     }
       
 }

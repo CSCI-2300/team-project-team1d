@@ -91,6 +91,7 @@ public class ConnectFourGrid
 
     public ConnectFourPiece getVerticalWinner(){
         ConnectFourPiece winner = null;
+        int count = 1;
 
         for (int j = 0; j < 7; j++)
         {
@@ -101,10 +102,14 @@ public class ConnectFourGrid
                 {
                     winner = null;
                 }
-            }
-            if (winner != null)
-            {
-                break;
+                else{
+                    count++;
+                }
+                if(count == 4)
+                {
+                    winner = this.grid[i][j];
+                    break;
+                }
             }
       }
       return winner;
@@ -112,6 +117,7 @@ public class ConnectFourGrid
 
     public ConnectFourPiece getHorizontalWinner(){
         ConnectFourPiece winner = null;
+        int count = 1;
 
         for(int i = 0; i < 6; i++)
         {
@@ -121,12 +127,15 @@ public class ConnectFourGrid
                 if (this.grid[i][j] != winner)
                 {
                     winner = null;
+                }
+                else{
+                    count++;
+                }
+                if(count == 4)
+                {
+                    winner = this.grid[i][j];
                     break;
                 }
-            }
-            if (winner != null)
-            {
-                break;
             }
         }
         return winner;
