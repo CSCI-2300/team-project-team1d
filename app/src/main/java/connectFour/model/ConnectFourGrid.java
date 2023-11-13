@@ -1,8 +1,13 @@
 package connectFour.model;
 
+import connectFour.Observer;
+
+import java.util.ArrayList;
+
 public class ConnectFourGrid 
 {
     private ConnectFourPiece[][] grid;
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     public ConnectFourGrid()
     {
@@ -27,6 +32,7 @@ public class ConnectFourGrid
         if(row != -1)
         {
             grid[row][column] = piece;
+            notifyObservers();
             return true;
         }
         else
@@ -67,4 +73,92 @@ public class ConnectFourGrid
         }
         return true;
     }
+
+    public ConnectFourPiece getWinner(){
+        ConnectFourPiece winner = getVerticalWinner();
+
+        if (winner == null)
+        {
+            winner = getHorizontalWinner();
+        }
+        if (winner == null)
+        {
+            winner = getDiagonalWinner();
+        }
+
+        return winner;   
+    }
+
+    public ConnectFourPiece getVerticalWinner(){
+        ConnectFourPiece winner = null;
+
+        for (int j = 0; j < 7; j++)
+        {
+            winner = this.grid[0][j];
+            for (int i = 0; i < 6; i++)
+            {
+                if(this.grid[i][j] != winner)
+                {
+                    winner = null;
+                }
+            }
+            if (winner != null)
+            {
+                break;
+            }
+      }
+      return winner;
+    }
+
+    public ConnectFourPiece getHorizontalWinner(){
+        ConnectFourPiece winner = null;
+
+        for(int i = 0; i < 6; i++)
+        {
+            winner = this.grid[i][0];
+            for (int j = 0; j < 7; j++)
+            {
+                if (this.grid[i][j] != winner)
+                {
+                    winner = null;
+                    break;
+                }
+            }
+            if (winner != null)
+            {
+                break;
+            }
+        }
+        return winner;
+    }
+
+    public ConnectFourPiece getDiagonalWinner(){
+        ConnectFourPiece winner = this.grid[0][0];
+
+        return winner;
+    }
+
+    public boolean isGameOver(){
+        if(this.getWinner() != null || !this.isFull())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void register(Observer observer)
+    {
+        observers.add(observer);
+    }
+
+    public void notifyObservers()
+    {
+      for(Observer observer: observers)
+      {
+        observer.update();
+      }
+   }
 }
