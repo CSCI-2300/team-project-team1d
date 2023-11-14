@@ -1,6 +1,6 @@
 
 package connectFour;
-import connectFour.control.TwoPlayerController;
+import connectFour.controller.TwoPlayerController;
 import connectFour.model.*;
 import connectFour.view.*;
 import java.util.Random;
@@ -10,16 +10,8 @@ public class App {
     {
         ConnectFourGrid grid = new ConnectFourGrid();
         ControllerInterface controller = new TwoPlayerController(grid);
-        //ConnectFourGUI gui = new ConnectFourGUI(controller);
-
-        /*Random rand = new Random();
-        int input = 1;
-        while(!grid.isFull())
-        {
-            controller.userPressed(input);
-            grid.show();
-            input = rand.nextInt(7);
-        }*/
+        
+        System.out.println("Winner is: " + grid.getWinner());
     }
       
 }

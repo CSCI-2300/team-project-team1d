@@ -1,7 +1,7 @@
 package connectFour.view;
 
 import connectFour.ControllerInterface;
-import connectFour.GameObserver;
+import connectFour.Observer;
 import connectFour.view.CircleButton;
 import connectFour.model.ConnectFourGrid;
 
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class ConnectFourGUI implements GameObserver
+public class ConnectFourGUI implements Observer
 {
     private ControllerInterface controller;
     private CircleButton[][] buttons;

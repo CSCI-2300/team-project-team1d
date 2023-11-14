@@ -1,4 +1,4 @@
-package connectFour.control;
+package connectFour.controller;
 
 import connectFour.ControllerInterface;
 import connectFour.model.*;
