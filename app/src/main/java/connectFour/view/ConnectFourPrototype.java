@@ -5,6 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ConnectFourPrototype extends JButton{
+    private CircleButton[][] buttons;
+    private Color currentPlayerColor;
+
+    public ConnectFourPrototype(){
+        JFrame mainFrame = new JFrame("Connect Four");
+    }
     public static void main(String[] args) {
         JFrame mainFrame = new JFrame("Connect Four");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

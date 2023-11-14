@@ -1,12 +1,17 @@
 package connectFour.model;
 
+import java.util.ArrayList;
+import connectFour.GameObserver;
+
 public class ConnectFourGrid 
 {
     private ConnectFourPiece[][] grid;
+    private ArrayList<GameObserver> observers;
 
     public ConnectFourGrid()
     {
         this.grid = new ConnectFourPiece[6][7];     //6 rows and 7 columns
+        this.observers = new ArrayList<GameObserver>();
     }
 
     public int getNextSpace(int column)     //returns index of lowest open space in column or -1 if column is full
@@ -27,10 +32,12 @@ public class ConnectFourGrid
         if(row != -1)
         {
             grid[row][column] = piece;
+            notifyObservers();
             return true;
         }
         else
         {
+            notifyObservers();
             return false;
         }
         
@@ -67,4 +74,19 @@ public class ConnectFourGrid
         }
         return true;
     }
+
+    public ConnectFourPiece getPlayersPiece(int row, int col){
+        return grid[row][col];
+    }
+
+    public void register(GameObserver observer){
+        observers.add(observer);
+    }
+
+    public void notifyObservers(){
+        for(GameObserver o : observers){
+            o.update();
+        }
+    }
+
 }
