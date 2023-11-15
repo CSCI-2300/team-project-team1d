@@ -15,8 +15,7 @@ public class ConnectFourGUI implements Observer
     private CircleButton[][] buttons;
     private ConnectFourGrid connectFour;
 
-    public ConnectFourGUI(ControllerInterface controller, ConnectFourGrid connectFour)
-    {
+    public ConnectFourGUI(ControllerInterface controller, ConnectFourGrid connectFour){
         this.controller = controller;
         this.connectFour = connectFour;
         this.connectFour.register(this);
@@ -67,19 +66,15 @@ public class ConnectFourGUI implements Observer
         mainFrame.add(optionsPanel, BorderLayout.SOUTH);
         mainFrame.pack();
         mainFrame.setVisible(true);
-        
     }
 
     @Override
     public void update(){
-        for(int col = 0; col < 7; col++)
-        {
-            for(int row = 0; row < 6; row++)
-            {
+        for(int col = 0; col < 7; col++){
+            for(int row = 0; row < 6; row++){
                 CircleButton button = buttons[row][col];
                 int player = controller.getPlayerColor(row, col);
-                if(player != 0)
-                {
+                if(player != 0){
                     button.setColor(player == 1 ? Color.RED : Color.BLUE);
                 } else {
                     button.setColor(new Color(1, 50, 32));

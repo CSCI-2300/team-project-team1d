@@ -6,8 +6,7 @@ import connectFour.view.*;
 import java.util.Random;
 
 public class App {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args){
         ConnectFourGrid grid = new ConnectFourGrid();
         ControllerInterface controller = new TwoPlayerController(grid);
     }

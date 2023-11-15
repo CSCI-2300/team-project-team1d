@@ -11,6 +11,7 @@ public class ConnectFourPrototype extends JButton{
     public ConnectFourPrototype(){
         JFrame mainFrame = new JFrame("Connect Four");
     }
+
     public static void main(String[] args) {
         JFrame mainFrame = new JFrame("Connect Four");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,8 +53,6 @@ public class ConnectFourPrototype extends JButton{
 
         JPanel optionsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         optionsPanel.add(newGameButton);
-        //optionsPanel.add(autoPlayerButton);
-        //optionsPanel.add(userButton);
         optionsPanel.add(winsButton);
 
         mainFrame.add(backgroundPanel, BorderLayout.CENTER);
@@ -62,5 +61,4 @@ public class ConnectFourPrototype extends JButton{
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
-
 }
