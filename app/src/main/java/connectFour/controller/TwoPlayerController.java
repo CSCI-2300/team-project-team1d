@@ -20,7 +20,12 @@ public class TwoPlayerController implements ControllerInterface
     public void userPressed(int column)
     {
         grid.placePiece(currentPiece, column);
-        System.out.println(grid.getWinner());
+        
+        if(grid.getWinner() != null)
+        {
+            System.out.println("Winner is: " + grid.getWinner());
+        }
+
         if(currentPiece == ConnectFourPiece.R)
         {
             currentPiece = ConnectFourPiece.Y;

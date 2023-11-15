@@ -20,14 +20,14 @@ public class CircleButton extends JButton {
     }
 
     protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+
         if(getModel().isArmed()){
             g.setColor(new Color(1, 50, 32));
         } else {
             g.setColor(getBackground());
         }
         g.fillOval(getSize().width/6, getSize().height / 6, getSize().width*2/3, getSize().height*2/3);
-
-        super.paintComponent(g);
     }
 
     protected void paintBorder(Graphics g){
