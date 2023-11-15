@@ -30,7 +30,7 @@ public class TwoPlayerController implements ControllerInterface{
 
     public int getPlayerColor(int row, int col){
         ConnectFourPiece playersPiece = grid.getPlayersPiece(row, col);
-        
+
         if(playersPiece == ConnectFourPiece.R){
             return 1;
         } else if(playersPiece == ConnectFourPiece.Y){
