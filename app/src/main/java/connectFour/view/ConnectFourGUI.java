@@ -66,7 +66,6 @@ public class ConnectFourGUI implements Observer
         mainFrame.add(optionsPanel, BorderLayout.SOUTH);
         mainFrame.pack();
         mainFrame.setVisible(true);
-        
     }
 
     @Override

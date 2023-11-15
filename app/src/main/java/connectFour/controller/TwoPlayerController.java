@@ -25,7 +25,6 @@ public class TwoPlayerController implements ControllerInterface{
         } else{
             currentPiece = ConnectFourPiece.R;
         }
-
     }
 
     public int getPlayerColor(int row, int col){
