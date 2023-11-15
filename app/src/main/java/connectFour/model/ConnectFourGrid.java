@@ -92,24 +92,24 @@ public class ConnectFourGrid
 
     public ConnectFourPiece getVerticalWinner(){
         ConnectFourPiece winner = null;
-        int count = 1;
 
         for (int j = 0; j < 7; j++)
         {
-            winner = this.grid[0][j];
-            for (int i = 0; i < 6; i++)
+            int count = 1;
+            for (int i = 0; i < 5; i++)
             {
-                if(this.grid[i][j] != winner)
+                if(this.grid[i][j]!=null && this.grid[i][j]==this.grid[i+1][j])
                 {
-                    winner = null;
+                    count++;
+                    System.out.println("vertical: " + count);
                 }
                 else{
-                    count++;
+                    count = 1;
                 }
-                if(count == 4)
+
+                if(count >= 4)
                 {
                     winner = this.grid[i][j];
-                    break;
                 }
             }
       }
@@ -118,32 +118,96 @@ public class ConnectFourGrid
 
     public ConnectFourPiece getHorizontalWinner(){
         ConnectFourPiece winner = null;
-        int count = 1;
 
         for(int i = 0; i < 6; i++)
         {
-            winner = this.grid[i][0];
-            for (int j = 0; j < 7; j++)
+            int count = 1;
+            for (int j = 0; j < 6; j++)
             {
-                if (this.grid[i][j] != winner)
+                if (this.grid[i][j]!=null && this.grid[i][j]==this.grid[i][j+1])
                 {
-                    winner = null;
+                    count++;
+                    System.out.println("Horizontal: " + count);
+                    if(count >= 4)
+                    {
+                        winner = this.grid[i][j];
+                    }
                 }
                 else{
-                    count++;
+                    count = 1;
                 }
-                if(count == 4)
-                {
-                    winner = this.grid[i][j];
-                    break;
-                }
+                
             }
         }
         return winner;
     }
 
     public ConnectFourPiece getDiagonalWinner(){
-        ConnectFourPiece winner = this.grid[0][0];
+        ConnectFourPiece winner = null;
+
+        for (int i = 0; i<3; i++){
+            int count = 1;
+            for(int row = i, col = 0; row<5 && col<7; row++, col++){
+                if(this.grid[row][col]!=null && this.grid[row][col] == this.grid[row+1][col+1]){
+                    count++;
+                    if(count>=4){
+                        winner = this.grid[row][col];
+                        return winner;
+                    }
+                }
+                else{
+                    count = 1;
+                }
+            }
+        }
+
+        for (int j = 1; j<4; j++){
+            int count = 1;
+            for(int row = 0, col = j; row<6 && col<6; row++, col++){
+                if(this.grid[row][col]!=null && this.grid[row][col] == this.grid[row+1][col+1]){
+                    count++;
+                    if(count>=4){
+                        winner = this.grid[row][col];
+                        return winner;
+                    }
+                }
+                else{
+                    count = 1;
+                }
+            }
+        }
+
+        for (int i = 0; i<3; i++){
+            int count = 1;
+            for(int row = i, col = 6; row<5 && col>0; row++, col--){
+                if(this.grid[row][col]!=null && this.grid[row][col] == this.grid[row+1][col-1]){
+                    count++;
+                    if(count>=4){
+                        winner = this.grid[row][col];
+                        return winner;
+                    }
+                }
+                else{
+                    count = 1;
+                }
+            }
+        }
+
+        for (int j = 1; j<4; j++){
+            int count = 1;
+            for(int row = 0, col = 5; row<6 && col>0; row++, col--){
+                if(this.grid[row][col]!=null && this.grid[row][col] == this.grid[row+1][col-1]){
+                    count++;
+                    if(count>=4){
+                        winner = this.grid[row][col];
+                        return winner;
+                    }
+                }
+                else{
+                    count = 1;
+                }
+            }
+        }
 
         return winner;
     }

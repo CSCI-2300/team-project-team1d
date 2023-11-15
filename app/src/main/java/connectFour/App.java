@@ -10,7 +10,6 @@ public class App {
     {
         ConnectFourGrid grid = new ConnectFourGrid();
         ControllerInterface controller = new TwoPlayerController(grid);
-        
         System.out.println("Winner is: " + grid.getWinner());
     }
       
