@@ -13,7 +13,6 @@ public class ConnectFourGUI implements Observer
 {
     private ControllerInterface controller;
     private CircleButton[][] buttons;
-    private boolean redsTurn;
     private ConnectFourGrid connectFour;
 
     public ConnectFourGUI(ControllerInterface controller, ConnectFourGrid connectFour)
@@ -21,8 +20,6 @@ public class ConnectFourGUI implements Observer
         this.controller = controller;
         this.connectFour = connectFour;
         this.connectFour.register(this);
-
-        this.redsTurn = true;
 
         JFrame mainFrame = new JFrame("Connect Four");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +46,6 @@ public class ConnectFourGUI implements Observer
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    CircleButton buttonClicked = (CircleButton) e.getSource();
                     int clickedColumn = col;
                     controller.userPressed(clickedColumn);
                 }
@@ -90,7 +86,6 @@ public class ConnectFourGUI implements Observer
                 }
             }
         }
-        redsTurn = !redsTurn;
     }
 
 }
