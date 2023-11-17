@@ -67,6 +67,7 @@ public class ConnectFourGrid
         if (winner == null){
             winner = getDiagonalWinner();
         }
+        
         return winner;   
     }
 
@@ -179,10 +180,10 @@ public class ConnectFourGrid
     }
 
     public boolean isGameOver(){
-        if((this.getWinner() != null) || (!this.isFull())){
-            return false;
-        } else{
+        if((this.getWinner() != null) || (this.isFull())){
             return true;
+        } else{
+            return false;
         }
     }
 

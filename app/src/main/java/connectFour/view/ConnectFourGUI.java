@@ -82,5 +82,4 @@ public class ConnectFourGUI implements Observer
             }
         }
     }
-
 }
