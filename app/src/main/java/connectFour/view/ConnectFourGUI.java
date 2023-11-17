@@ -81,6 +81,14 @@ public class ConnectFourGUI implements Observer
                 }
             }
         }
+
+        if(this.connectFour.isGameOver()){
+            for(int col = 0; col < 7; col++){
+                for(int row = 0; row < 6; row++){
+                    this.buttons[row][col].setEnabled(false);
+                }
+            }
+        }
     }
 
 }
