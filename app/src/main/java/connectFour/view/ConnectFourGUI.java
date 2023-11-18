@@ -14,6 +14,7 @@ public class ConnectFourGUI implements Observer
     private ControllerInterface controller;
     private CircleButton[][] buttons;
     private ConnectFourGrid connectFour;
+    private JLabel winnerLabel;
 
     public ConnectFourGUI(ControllerInterface controller, ConnectFourGrid connectFour){
         this.controller = controller;
@@ -35,6 +36,8 @@ public class ConnectFourGUI implements Observer
         JButton newGameButton = new JButton("Start New Game");
 
         JButton winsButton = new JButton("Total Player Wins");
+
+        winnerLabel = new JLabel(" ");
 
         for (int i = 0; i < 42; i++) {
             CircleButton playerButton = new CircleButton(" ");
@@ -58,6 +61,7 @@ public class ConnectFourGUI implements Observer
         backgroundPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JPanel optionsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        optionsPanel.add(winnerLabel);
         optionsPanel.add(newGameButton);
         optionsPanel.add(winsButton);
 
@@ -79,6 +83,20 @@ public class ConnectFourGUI implements Observer
                 } else {
                     button.setColor(new Color(1, 50, 32));
                 }
+            }
+        }
+
+        if(this.connectFour.isGameOver()){
+            for(int col = 0; col < 7; col++){
+                for(int row = 0; row < 6; row++){
+                    this.buttons[row][col].setEnabled(false);
+                }
+            }
+            if(this.connectFour.getWinner()==null){
+                winnerLabel.setText("Winner is: TIE");
+            }
+            else{
+                winnerLabel.setText("Winner is: " + this.connectFour.getWinner());
             }
         }
     }
