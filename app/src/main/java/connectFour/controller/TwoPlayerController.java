@@ -38,4 +38,8 @@ public class TwoPlayerController implements ControllerInterface{
             return 0;
         }
     }
+
+    public void resetGame(){
+        grid.clear();
+    }
 }

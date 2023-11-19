@@ -200,4 +200,13 @@ public class ConnectFourGrid
     public ConnectFourPiece getPlayersPiece(int row, int col){
         return grid[row][col];
     }
+
+    public void clear(){
+        for(int col = 0; col < 7; col++){
+            for(int row = 0; row < 6; row++){
+                grid[row][col] = null;
+            }
+        }
+        notifyObservers();
+    }
 }
