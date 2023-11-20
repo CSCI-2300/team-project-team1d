@@ -9,7 +9,7 @@ Nicole: The functionality of getting the winner and displaying it on the screen
 
 Emra: Implementing the "Start New Game" button, updating the aesthetic of winner display
 
-Daniel: Creating the UML Diagram
+Daniel: Creating the UML Diagram and adding the framework for adding the AutoPlayer functionality.
 
 ## Overview
 Run the code with: ``gradle run``. You will click on a column to take your turn of placing a piece down, the first player who gets four in a row (vertically, horizontally, or diagonally) will win. If no one has four of the same color in a row, and the board is full, then the game will end in a tie. You may start a new game at any time.

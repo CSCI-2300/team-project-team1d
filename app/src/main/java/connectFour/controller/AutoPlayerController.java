@@ -25,7 +25,7 @@ public class AutoPlayerController implements ControllerInterface
         grid.placePiece(currentPiece, col);
         if(!grid.isGameOver())
         {
-            autoPlayer.makeNextMove();
+            autoPlayer.makeNextMove(grid);
         }
 
     }

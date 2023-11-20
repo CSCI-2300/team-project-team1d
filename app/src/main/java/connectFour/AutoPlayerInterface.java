@@ -1,9 +1,8 @@
 package connectFour;
 
-import connectFour.model.ConnectFourPiece;
+import connectFour.model.*;
 
 public interface AutoPlayerInterface 
 {
-    public ConnectFourPiece getPiece();
-    public boolean makeNextMove();
+    public boolean makeNextMove(ConnectFourGrid grid);
 }
