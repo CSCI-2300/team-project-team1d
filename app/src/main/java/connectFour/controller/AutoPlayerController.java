@@ -3,32 +3,35 @@ package connectFour.controller;
 import connectFour.ControllerInterface;
 import connectFour.model.*;
 import connectFour.view.ConnectFourGUI;
+import connectFour.AutoPlayerInterface;
 
-public class TwoPlayerController implements ControllerInterface{
-    
+public class AutoPlayerController implements ControllerInterface
+{
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
     private ConnectFourGUI view;
+    private AutoPlayerInterface autoPlayer;
 
-    public TwoPlayerController(ConnectFourGrid grid){
-        this.view = new ConnectFourGUI(this, grid);
+    public AutoPlayerController(ConnectFourGrid grid, AutoPlayerInterface autoPlayer)
+    {
         this.grid = grid;
+        this.view = new ConnectFourGUI(this, grid);
         this.currentPiece = ConnectFourPiece.R;
+        this.autoPlayer = autoPlayer;
     }
 
-    public void userPressed(int column){
-        grid.placePiece(currentPiece, column);
-        grid.show();
-        System.out.println("Winner is: " + grid.getWinner());
-
-        if(currentPiece == ConnectFourPiece.R){
-            currentPiece = ConnectFourPiece.Y;
-        } else{
-            currentPiece = ConnectFourPiece.R;
+    public void userPressed(int col)
+    {
+        grid.placePiece(currentPiece, col);
+        if(!grid.isGameOver())
+        {
+            autoPlayer.makeNextMove();
         }
+
     }
 
-    public int getPlayerColor(int row, int col){
+    public int getPlayerColor(int row, int col)
+    {
         ConnectFourPiece playersPiece = grid.getPlayersPiece(row, col);
 
         if(playersPiece == ConnectFourPiece.R){
@@ -40,7 +43,10 @@ public class TwoPlayerController implements ControllerInterface{
         }
     }
 
-    public void resetGame(){
+    public void resetGame()
+    {
         grid.clear();
     }
+
+    
 }
