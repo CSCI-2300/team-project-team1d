@@ -2,17 +2,14 @@ package connectFour.model;
 
 import connectFour.AutoPlayerInterface;
 
-public class NormalAutoPlayer implements AutoPlayerInterface
-{
+public class NormalAutoPlayer implements AutoPlayerInterface{
     private ConnectFourPiece computerPiece;
 
-    public NormalAutoPlayer()
-    {
+    public NormalAutoPlayer(){
         this.computerPiece = ConnectFourPiece.Y;
     }
 
-    public boolean makeNextMove(ConnectFourGrid grid)
-    {
+    public boolean makeNextMove(ConnectFourGrid grid){
         return true;
     }
 }

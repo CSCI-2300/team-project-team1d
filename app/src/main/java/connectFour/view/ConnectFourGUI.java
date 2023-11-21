@@ -10,8 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class ConnectFourGUI implements Observer
-{
+public class ConnectFourGUI implements Observer{
     private ControllerInterface controller;
     private CircleButton[][] buttons;
     private ConnectFourGrid connectFour;
@@ -110,8 +109,7 @@ public class ConnectFourGUI implements Observer
             }
             if(this.connectFour.getWinner()==null){
                 winnerLabel.setText("Game Over - TIE");
-            }
-            else if(this.connectFour.getWinner() == ConnectFourPiece.R){
+            } else if(this.connectFour.getWinner() == ConnectFourPiece.R){
                 winnerLabel.setText("Game Over - Red Player Wins!");
             }else{
                 winnerLabel.setText("Game Over - Blue Player Wins!");

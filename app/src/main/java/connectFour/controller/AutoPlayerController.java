@@ -5,33 +5,28 @@ import connectFour.model.*;
 import connectFour.view.ConnectFourGUI;
 import connectFour.AutoPlayerInterface;
 
-public class AutoPlayerController implements ControllerInterface
-{
+public class AutoPlayerController implements ControllerInterface{
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
     private ConnectFourGUI view;
     private AutoPlayerInterface autoPlayer;
 
-    public AutoPlayerController(ConnectFourGrid grid, AutoPlayerInterface autoPlayer)
-    {
+    public AutoPlayerController(ConnectFourGrid grid, AutoPlayerInterface autoPlayer){
         this.grid = grid;
         this.view = new ConnectFourGUI(this, grid);
         this.currentPiece = ConnectFourPiece.R;
         this.autoPlayer = autoPlayer;
     }
 
-    public void userPressed(int col)
-    {
+    public void userPressed(int col){
         grid.placePiece(currentPiece, col);
-        if(!grid.isGameOver())
-        {
+        if(!grid.isGameOver()){
             autoPlayer.makeNextMove(grid);
         }
 
     }
 
-    public int getPlayerColor(int row, int col)
-    {
+    public int getPlayerColor(int row, int col){
         ConnectFourPiece playersPiece = grid.getPlayersPiece(row, col);
 
         if(playersPiece == ConnectFourPiece.R){
@@ -43,10 +38,8 @@ public class AutoPlayerController implements ControllerInterface
         }
     }
 
-    public void resetGame()
-    {
+    public void resetGame(){
         grid.clear();
     }
-
-    
+ 
 }

@@ -4,8 +4,7 @@ import connectFour.Observer;
 
 import java.util.ArrayList;
 
-public class ConnectFourGrid 
-{
+public class ConnectFourGrid{
     private ConnectFourPiece[][] grid;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
 
@@ -87,8 +86,9 @@ public class ConnectFourGrid
                     winner = this.grid[i][j];
                 }
             }
-      }
-      return winner;
+        }
+
+        return winner;
     }
 
     public ConnectFourPiece getHorizontalWinner(){
@@ -107,6 +107,7 @@ public class ConnectFourGrid
                 }
             }
         }
+
         return winner;
     }
 
@@ -176,6 +177,7 @@ public class ConnectFourGrid
                 }
             }
         }
+        
         return winner;
     }
 
