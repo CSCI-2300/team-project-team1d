@@ -5,11 +5,11 @@ Group members consist of Nicole Orphan, Emra Meduseljac, and Daniel Leeper. The 
 ### Update
 As of 11/20/2023, the Deliverable 2 responsibilities are:
 
-Nicole: The functionality of getting the winner and displaying it on the screen
+Nicole: The testing and the saving state for total player wins
 
-Emra: Implementing the "Start New Game" button, updating the aesthetic of winner display
+Emra: Initial state UI, adding different windows to the UI
 
-Daniel: Creating the UML Diagram and adding the framework for adding the AutoPlayer functionality.
+Daniel: Auto-player functionality
 
 ## Overview
 Run the code with: ``gradle run``. You will click on a column to take your turn of placing a piece down, the first player who gets four in a row (vertically, horizontally, or diagonally) will win. If no one has four of the same color in a row, and the board is full, then the game will end in a tie. You may start a new game at any time.
