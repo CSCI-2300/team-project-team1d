@@ -9,16 +9,62 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
     
     private ConnectFourPiece computerPiece;
     private ConnectFourGrid grid;
-    
+    private int computerLastMove;
+    private int playerLastMove;
+    private int offensiveEmphasis;
+    private int defenseiveEmphasis;
 
     public NormalAutoPlayer(ConnectFourGrid grid){
         this.computerPiece = ConnectFourPiece.Y;
         this.grid = grid;
+        Random rand = new Random();
+        this.computerLastMove = rand.nextInt(6);
+        this.playerLastMove = rand.nextInt(6);
+        this.offensiveEmphasis = 2;
+        this.defenseiveEmphasis = 2;
     }
 
     public void makeNextMove(ConnectFourGrid grid){
         Random rand = new Random();
-        ArrayList<Integer> openCols = grid.getOpenCols();
-        grid.placePiece(computerPiece, openCols.get(rand.nextInt(openCols.size())));
+        ArrayList<Integer> possibleMoves = this.buildPossibleMoves();
+        int nextMove = -1;
+        while(!grid.getOpenCols().contains(nextMove)){
+            nextMove = possibleMoves.get(rand.nextInt(possibleMoves.size()));
+        }
+        this.computerLastMove = nextMove;
+        grid.placePiece(computerPiece, nextMove);
+    }
+
+    private ArrayList<Integer> buildPossibleMoves()
+    {
+        ArrayList<Integer> possibleMoves = grid.getOpenCols();
+        possibleMoves.add(playerLastMove);
+        possibleMoves.addAll(this.buildStrategicMoves(playerLastMove, defenseiveEmphasis));
+        possibleMoves.addAll(this.buildStrategicMoves(computerLastMove, offensiveEmphasis));
+        return possibleMoves;
+    }
+
+    private ArrayList<Integer> buildStrategicMoves(int lastMove, int emphasis){
+        ArrayList<Integer> strategicMoves = new ArrayList<Integer>();
+        for(int i = 0; i < emphasis; i++){
+            strategicMoves.add(lastMove);
+            strategicMoves.add(lastMove);
+            if(playerLastMove == 0){
+                strategicMoves.add(1);
+            }
+            else if(playerLastMove == 5){
+                strategicMoves.add(4);
+            }
+            else{
+                strategicMoves.add(playerLastMove + 1);
+                strategicMoves.add(playerLastMove - 1);
+            }
+        }
+
+        return strategicMoves;
+    }
+
+    public void setPlayerLastMove(int col){
+        playerLastMove = col;
     }
 }
