@@ -1,9 +1,8 @@
-
 package connectFour;
+
 import connectFour.controller.*;
 import connectFour.model.*;
 import connectFour.view.*;
-import java.util.Random;
 
 public class App {
     public static void main(String[] args){
