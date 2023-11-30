@@ -20,8 +20,8 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
         Random rand = new Random();
         this.computerLastMove = rand.nextInt(6);
         this.playerLastMove = rand.nextInt(6);
-        this.offensiveEmphasis = 2;
-        this.defenseiveEmphasis = 3;
+        this.offensiveEmphasis = 100;
+        this.defenseiveEmphasis = 0;
     }
 
     public void makeNextMove(ConnectFourGrid grid){
@@ -67,4 +67,6 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
     public void setPlayerLastMove(int col){
         playerLastMove = col;
     }
+
+    
 }

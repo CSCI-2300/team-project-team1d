@@ -24,7 +24,7 @@ public class ConnectFourGrid{
     public ArrayList<Integer> getOpenCols()
     {
         ArrayList<Integer> openCols = new ArrayList<Integer>();
-        for(int col = 0; col < 6; col++)
+        for(int col = 0; col < 7; col++)
         {
             if(this.getNextSpace(col) != -1)
             {

@@ -15,13 +15,16 @@ public class TwoPlayerController implements ControllerInterface{
     }
 
     public void userPressed(int column){
-        grid.placePiece(currentPiece, column);
+        if(grid.getOpenCols().contains(column)){
+            grid.placePiece(currentPiece, column);
 
-        if(currentPiece == ConnectFourPiece.R){
-            currentPiece = ConnectFourPiece.Y;
-        } else{
-            currentPiece = ConnectFourPiece.R;
+            if(currentPiece == ConnectFourPiece.R){
+                currentPiece = ConnectFourPiece.Y;
+            } else{
+                currentPiece = ConnectFourPiece.R;
+            }
         }
+        
     }
 
     public int getPlayerColor(int row, int col){

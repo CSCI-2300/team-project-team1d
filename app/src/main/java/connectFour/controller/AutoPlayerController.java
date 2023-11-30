@@ -17,9 +17,12 @@ public class AutoPlayerController implements ControllerInterface{
     }
 
     public void userPressed(int col){
-        grid.placePiece(currentPiece, col);
-        if(!grid.isGameOver()){
-            autoPlayer.makeNextMove(grid);
+        if(grid.getOpenCols().contains(col)){
+            grid.placePiece(currentPiece, col);
+            autoPlayer.setPlayerLastMove(col);
+            if(!grid.isGameOver()){
+                autoPlayer.makeNextMove(grid);
+            }
         }
     }
 
