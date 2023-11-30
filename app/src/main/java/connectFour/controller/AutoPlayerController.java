@@ -23,7 +23,6 @@ public class AutoPlayerController implements ControllerInterface{
         if(!grid.isGameOver()){
             autoPlayer.makeNextMove(grid);
         }
-
     }
 
     public int getPlayerColor(int row, int col){

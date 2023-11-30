@@ -21,7 +21,7 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
         this.computerLastMove = rand.nextInt(6);
         this.playerLastMove = rand.nextInt(6);
         this.offensiveEmphasis = 2;
-        this.defenseiveEmphasis = 2;
+        this.defenseiveEmphasis = 3;
     }
 
     public void makeNextMove(ConnectFourGrid grid){
@@ -31,7 +31,7 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
         while(!grid.getOpenCols().contains(nextMove)){
             nextMove = possibleMoves.get(rand.nextInt(possibleMoves.size()));
         }
-        this.computerLastMove = nextMove;
+        computerLastMove = nextMove;
         grid.placePiece(computerPiece, nextMove);
     }
 
@@ -49,15 +49,15 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
         for(int i = 0; i < emphasis; i++){
             strategicMoves.add(lastMove);
             strategicMoves.add(lastMove);
-            if(playerLastMove == 0){
+            if(lastMove == 0){
                 strategicMoves.add(1);
             }
-            else if(playerLastMove == 5){
+            else if(lastMove == 5){
                 strategicMoves.add(4);
             }
             else{
-                strategicMoves.add(playerLastMove + 1);
-                strategicMoves.add(playerLastMove - 1);
+                strategicMoves.add(lastMove + 1);
+                strategicMoves.add(lastMove - 1);
             }
         }
 
