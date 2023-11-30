@@ -10,7 +10,7 @@ public class CircleButton extends JButton {
     public CircleButton(String label){
         super(label);
 
-        setBackground(new Color(1, 50, 32));
+        setBackground(new Color(1, 50, 40));
         setFocusable(false);
 
         Dimension size = getPreferredSize();
@@ -23,7 +23,7 @@ public class CircleButton extends JButton {
         super.paintComponent(g);
 
         if(getModel().isArmed()){
-            g.setColor(new Color(1, 50, 32));
+            g.setColor(new Color(1, 50, 40));
         } else {
             g.setColor(getBackground());
         }

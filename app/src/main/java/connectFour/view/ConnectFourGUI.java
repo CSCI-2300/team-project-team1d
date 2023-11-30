@@ -2,9 +2,9 @@ package connectFour.view;
 
 import connectFour.ControllerInterface;
 import connectFour.Observer;
-import connectFour.view.CircleButton;
-import connectFour.model.ConnectFourGrid;
-import connectFour.model.ConnectFourPiece;
+import connectFour.view.*;
+import connectFour.model.*;
+import connectFour.controller.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,29 +17,132 @@ public class ConnectFourGUI implements Observer{
     private JLabel winnerLabel;
     private JPanel announcementPanel;
     private JPanel backgroundPanel;
+    private JFrame mainFrame;
 
-    public ConnectFourGUI(ControllerInterface controller, ConnectFourGrid connectFour){
-        this.controller = controller;
-        this.connectFour = connectFour;
-        this.connectFour.register(this);
+    public ConnectFourGUI(){
+        startMenu();
+    }
 
-        JFrame mainFrame = new JFrame("Connect Four");
+    private void startMenu(){
+        mainFrame = new JFrame("Start Menu");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JPanel menuPanel = new JPanel(new GridLayout(0, 1, 0, 20));
+        menuPanel.setBackground(new Color(1, 50, 32));
+
+        JPanel gameTitlePanel = new JPanel();
+        gameTitlePanel.setBackground(new Color(1, 50, 32));
+
+        JLabel gameTitle = new JLabel("Connect Four!");
+        gameTitle.setFont(new Font("Monospace", Font.BOLD, 50));
+        gameTitle.setForeground(Color.YELLOW);
+
+        gameTitlePanel.add(gameTitle);
+
+        JButton newGameButton = new JButton("Start New Game");
+        startMenuButtons(newGameButton);
+        newGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                showGameOptions();
+            }
+        });
+
+        JButton winsButton = new JButton("Total Player Wins");
+        startMenuButtons(winsButton);
+
+        menuPanel.add(gameTitlePanel);
+        menuPanel.add(newGameButton);
+        menuPanel.add(winsButton);
+
+        mainFrame.add(menuPanel);
+        mainFrame.setPreferredSize(new Dimension(600, 350));
+        mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setVisible(true);
+    }
+
+    private void showGameOptions() {
+        mainFrame.dispose();
+        
+        connectFour = new ConnectFourGrid();
+
+        JFrame playerOptionFrame = new JFrame("Start Menu");
+        playerOptionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel optionsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        optionsPanel.setBackground(new Color(1, 50, 32));
+
+        JLabel optionTitle = new JLabel("Select a game mode:");
+        optionTitle.setFont(new Font("Monospace", Font.BOLD, 40));
+        optionTitle.setForeground(Color.YELLOW);
+
+        JButton playerVsPlayer = new JButton("Player vs. Player");
+        JButton playerVsComp = new JButton("Player vs. Computer");
+
+        startMenuButtons(playerVsPlayer);
+        startMenuButtons(playerVsComp);
+
+        playerVsPlayer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                showGame(new TwoPlayerController(connectFour));
+                playerOptionFrame.dispose();
+            }
+        });
+
+        playerVsComp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                showGame(new AutoPlayerController(connectFour, new NormalAutoPlayer(connectFour)));
+                playerOptionFrame.dispose();
+            }
+        });
+
+        optionsPanel.add(optionTitle);
+        optionsPanel.add(playerVsPlayer);
+        optionsPanel.add(playerVsComp);
+
+        playerOptionFrame.add(optionsPanel);
+        playerOptionFrame.setPreferredSize(new Dimension(600, 350));
+        playerOptionFrame.pack();
+        playerOptionFrame.setLocationRelativeTo(null);
+        playerOptionFrame.setVisible(true);
+    }
+
+    private void startMenuButtons(JButton button){
+        button.setPreferredSize(new Dimension(300, 70));
+        button.setFont(new Font("Monospace", Font.BOLD, 20));
+        button.setBackground(new Color(1, 80, 40));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+        button.setMargin(new Insets(10, 20, 10, 20));
+    }
+
+    private void showGame(ControllerInterface controller){
+        mainFrame.dispose();
+
+        this.controller = controller;
+        this.connectFour.register(this);
+
+        JFrame gameFrame = new JFrame("Connect Four");
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         backgroundPanel = new JPanel();
-        backgroundPanel.setBackground(new Color(1, 50, 32));
+        backgroundPanel.setBackground(new Color(1, 50, 40));
 
         JPanel buttonPanel = new JPanel(new GridLayout(6, 7,3,3));
         buttonPanel.setBackground(new Color(255, 255, 0));
-        buttonPanel.setPreferredSize(new Dimension(470, 420));
+        buttonPanel.setPreferredSize(new Dimension(500, 450));
 
         announcementPanel = new JPanel();
         announcementPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        announcementPanel.setBackground(new Color(1, 50, 32));
+        announcementPanel.setBackground(new Color(1, 50, 40));
 
         buttons = new CircleButton[6][7];
 
-        JButton newGameButton = new JButton("Start New Game");
+        JButton newGameButton = new JButton("Start Over");
         newGameButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
@@ -47,10 +150,17 @@ public class ConnectFourGUI implements Observer{
             }
         });
 
-        JButton winsButton = new JButton("Total Player Wins");
+        JButton mainMenuButton = new JButton("Main Menu");
+        mainMenuButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                new ConnectFourGUI();
+                gameFrame.dispose();
+            }
+        });
 
         winnerLabel = new JLabel(" ");
-        winnerLabel.setFont(new Font("Serif", Font.BOLD, 24));
+        winnerLabel.setFont(new Font("Monospace", Font.BOLD, 30));
         winnerLabel.setForeground(Color.WHITE);
         announcementPanel.add(winnerLabel);
 
@@ -78,13 +188,14 @@ public class ConnectFourGUI implements Observer{
 
         JPanel optionsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         optionsPanel.add(newGameButton);
-        optionsPanel.add(winsButton);
+        optionsPanel.add(mainMenuButton);
 
-        mainFrame.add(backgroundPanel, BorderLayout.CENTER);
-        mainFrame.setPreferredSize(new Dimension(670, 570));
-        mainFrame.add(optionsPanel, BorderLayout.SOUTH);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+        gameFrame.add(backgroundPanel, BorderLayout.CENTER);
+        gameFrame.setPreferredSize(new Dimension(720, 630));
+        gameFrame.add(optionsPanel, BorderLayout.SOUTH);
+        gameFrame.pack();
+        gameFrame.setLocationRelativeTo(null);
+        gameFrame.setVisible(true);
     }
 
     @Override
@@ -110,9 +221,9 @@ public class ConnectFourGUI implements Observer{
             if(this.connectFour.getWinner()==null){
                 winnerLabel.setText("Game Over - TIE");
             } else if(this.connectFour.getWinner() == ConnectFourPiece.R){
-                winnerLabel.setText("Game Over - Red Player Wins!");
+                winnerLabel.setText("<html>Game Over - <font color='red'>RED</font> Player Wins!</html>");
             }else{
-                winnerLabel.setText("Game Over - Blue Player Wins!");
+                winnerLabel.setText("<html>Game Over - <font color='blue'>BLUE</font> Player Wins!</html>");
             }
         }
     }

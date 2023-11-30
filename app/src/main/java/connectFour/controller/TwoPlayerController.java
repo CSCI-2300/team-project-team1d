@@ -8,17 +8,14 @@ public class TwoPlayerController implements ControllerInterface{
     
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
-    private ConnectFourGUI view;
 
     public TwoPlayerController(ConnectFourGrid grid){
-        this.view = new ConnectFourGUI(this, grid);
         this.grid = grid;
         this.currentPiece = ConnectFourPiece.R;
     }
 
     public void userPressed(int column){
         grid.placePiece(currentPiece, column);
-        System.out.println("Winner is: " + grid.getWinner());
 
         if(currentPiece == ConnectFourPiece.R){
             currentPiece = ConnectFourPiece.Y;

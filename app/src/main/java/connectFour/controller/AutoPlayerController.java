@@ -8,12 +8,10 @@ import connectFour.AutoPlayerInterface;
 public class AutoPlayerController implements ControllerInterface{
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
-    private ConnectFourGUI view;
     private AutoPlayerInterface autoPlayer;
 
     public AutoPlayerController(ConnectFourGrid grid, AutoPlayerInterface autoPlayer){
         this.grid = grid;
-        this.view = new ConnectFourGUI(this, grid);
         this.currentPiece = ConnectFourPiece.R;
         this.autoPlayer = autoPlayer;
     }
