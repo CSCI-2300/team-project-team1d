@@ -1,10 +1,10 @@
-package connectFour.view;
+package connectFour.connectFourPrototype;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class NewGamePrototype {
+public class PlayerWinsPrototype {
     public static void main(String[] args) {
         JFrame mainFrame = new JFrame("Start New Game");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

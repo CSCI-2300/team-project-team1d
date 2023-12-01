@@ -3,6 +3,10 @@ package connectFour.controller;
 import connectFour.ControllerInterface;
 import connectFour.model.*;
 import connectFour.view.ConnectFourGUI;
+import connectFour.view.FileSelector;
+
+import java.io.*;
+
 import connectFour.AutoPlayerInterface;
 
 public class AutoPlayerController implements ControllerInterface{
@@ -41,5 +45,18 @@ public class AutoPlayerController implements ControllerInterface{
     public void resetGame(){
         grid.clear();
     }
- 
+
+    public void userQuit(){
+        try{
+            String filePath = FileSelector.selectFileToSave();
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(this.grid.winners);
+            objectOutputStream.close();
+            fileOutputStream.close();
+        }
+        catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+    }
 }

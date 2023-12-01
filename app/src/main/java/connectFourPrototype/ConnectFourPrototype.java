@@ -1,6 +1,9 @@
-package connectFour.view;
+package connectFour.connectFourPrototype;
 
 import javax.swing.*;
+
+import connectFour.view.CircleButton;
+
 import java.awt.*;
 import java.awt.event.*;
 

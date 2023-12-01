@@ -1,16 +1,21 @@
 package connectFour.controller;
 
+import java.io.*;
+
 import connectFour.ControllerInterface;
 import connectFour.model.*;
 import connectFour.view.ConnectFourGUI;
+import connectFour.view.FileSelector;
 
 public class TwoPlayerController implements ControllerInterface{
     
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
+    private Winners winners;
 
     public TwoPlayerController(ConnectFourGrid grid){
         this.grid = grid;
+        this.winners = this.grid.winners;
         this.currentPiece = ConnectFourPiece.R;
     }
 
@@ -41,5 +46,29 @@ public class TwoPlayerController implements ControllerInterface{
 
     public void resetGame(){
         grid.clear();
+    }
+
+    public void userQuit(){
+        try{
+            String filePath = FileSelector.selectFileToSave();
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(this.grid.winners);
+            objectOutputStream.close();
+            fileOutputStream.close();
+        }
+        catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    public void loadFromFile() throws IOException, ClassNotFoundException{
+        String filePath = FileSelector.selectFileToLoad();
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        this.grid.winners = (Winners)objectInputStream.readObject();
+        objectInputStream.close();
+        fileInputStream.close();
+        System.out.println("Loaded from file");
     }
 }

@@ -67,6 +67,4 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
     public void setPlayerLastMove(int col){
         playerLastMove = col;
     }
-
-    
 }

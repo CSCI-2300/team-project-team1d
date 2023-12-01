@@ -4,12 +4,15 @@ import connectFour.Observer;
 
 import java.util.ArrayList;
 
-public class ConnectFourGrid{
+
+public class ConnectFourGrid {
     private ConnectFourPiece[][] grid;
+    public Winners winners;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     public ConnectFourGrid(){
         this.grid = new ConnectFourPiece[6][7];     //6 rows and 7 columns
+        this.winners = new Winners();
     }
 
     public int getNextSpace(int column){    //returns index of lowest open space in column or -1 if column is full
@@ -194,8 +197,18 @@ public class ConnectFourGrid{
         return winner;
     }
 
+    public void recordWin(){
+        if(this.getWinner() == ConnectFourPiece.R){
+            this.winners.increaseRedWins();
+        }
+        else if(this.getWinner() == ConnectFourPiece.Y){
+            this.winners.increaseYellowWins();
+        }
+    }
+
     public boolean isGameOver(){
         if((this.getWinner() != null) || (this.isFull())){
+            recordWin();
             return true;
         } else{
             return false;

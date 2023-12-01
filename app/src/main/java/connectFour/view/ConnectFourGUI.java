@@ -57,6 +57,13 @@ public class ConnectFourGUI implements Observer{
 
         mainFrame.add(menuPanel);
         mainFrame.setPreferredSize(new Dimension(600, 350));
+
+        mainFrame.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                controller.userQuit();
+            }
+        });
+
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
