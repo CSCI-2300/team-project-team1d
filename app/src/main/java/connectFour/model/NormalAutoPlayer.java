@@ -24,7 +24,7 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
         this.defenseiveEmphasis = 0;
     }
 
-    public void makeNextMove(ConnectFourGrid grid){
+    public void makeNextMove(){
         Random rand = new Random();
         ArrayList<Integer> possibleMoves = this.buildPossibleMoves();
         int nextMove = -1;
