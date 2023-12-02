@@ -2,8 +2,6 @@ package connectFour.controller;
 
 import connectFour.ControllerInterface;
 import connectFour.model.*;
-import connectFour.view.ConnectFourGUI;
-import connectFour.view.FileSelector;
 
 import java.io.*;
 

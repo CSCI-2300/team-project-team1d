@@ -4,18 +4,14 @@ import java.io.*;
 
 import connectFour.ControllerInterface;
 import connectFour.model.*;
-import connectFour.view.ConnectFourGUI;
-import connectFour.view.FileSelector;
 
 public class TwoPlayerController implements ControllerInterface{
     
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
-    private Winners winners;
 
     public TwoPlayerController(ConnectFourGrid grid){
         this.grid = grid;
-        this.winners = this.grid.winners;
         this.currentPiece = ConnectFourPiece.R;
 
         try{
