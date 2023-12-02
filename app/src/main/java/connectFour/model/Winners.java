@@ -20,4 +20,12 @@ public class Winners implements Serializable {
         numOfYellowWins++;
         return numOfYellowWins;
     }
+
+    public int returnRedWins(){
+        return numOfRedWins;
+    }
+
+    public int returnYellowWins(){
+        return numOfYellowWins;
+    }
 }

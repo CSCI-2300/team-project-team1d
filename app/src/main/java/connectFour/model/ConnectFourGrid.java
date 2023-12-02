@@ -4,6 +4,8 @@ import connectFour.Observer;
 
 import java.util.ArrayList;
 
+import javax.swing.SwingUtilities;
+
 
 public class ConnectFourGrid {
     private ConnectFourPiece[][] grid;

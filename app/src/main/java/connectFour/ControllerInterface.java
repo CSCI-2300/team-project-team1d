@@ -8,4 +8,6 @@ public interface ControllerInterface {
     public void resetGame();
     public void userQuit();
     public void loadFromFile() throws IOException, ClassNotFoundException;
+    public int getRedWins();
+    public int getYellowWins();
 }

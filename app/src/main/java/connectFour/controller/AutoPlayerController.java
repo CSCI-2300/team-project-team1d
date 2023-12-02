@@ -13,9 +13,11 @@ public class AutoPlayerController implements ControllerInterface{
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
     private AutoPlayerInterface autoPlayer;
+    private Winners winners;
 
     public AutoPlayerController(ConnectFourGrid grid, AutoPlayerInterface autoPlayer){
         this.grid = grid;
+        this.winners = this.grid.winners;
         this.currentPiece = ConnectFourPiece.R;
         this.autoPlayer = autoPlayer;
 
@@ -73,5 +75,13 @@ public class AutoPlayerController implements ControllerInterface{
         objectInputStream.close();
         fileInputStream.close();
         System.out.println("Loaded from file autoplayer");
+    }
+
+    public int getRedWins(){
+        return winners.returnRedWins();
+    }
+
+    public int getYellowWins(){
+        return winners.returnYellowWins();
     }
 }

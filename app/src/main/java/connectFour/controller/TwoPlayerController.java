@@ -57,7 +57,7 @@ public class TwoPlayerController implements ControllerInterface{
 
     public void userQuit(){
         try{
-            FileOutputStream fileOutputStream = new FileOutputStream("winners1.dat");
+            FileOutputStream fileOutputStream = new FileOutputStream("winners.dat");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this.grid.winners);
             objectOutputStream.close();
@@ -69,11 +69,19 @@ public class TwoPlayerController implements ControllerInterface{
     }
 
     public void loadFromFile() throws IOException, ClassNotFoundException{
-        FileInputStream fileInputStream = new FileInputStream("winners1.dat");
+        FileInputStream fileInputStream = new FileInputStream("winners.dat");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         this.grid.winners = (Winners)objectInputStream.readObject();
         objectInputStream.close();
         fileInputStream.close();
         System.out.println("Loaded from file two player");
+    }
+
+    public int getRedWins(){
+        return winners.returnRedWins();
+    }
+
+    public int getYellowWins(){
+        return winners.returnYellowWins();
     }
 }

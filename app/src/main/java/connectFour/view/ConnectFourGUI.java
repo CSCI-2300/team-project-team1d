@@ -15,8 +15,10 @@ public class ConnectFourGUI implements Observer{
     private CircleButton[][] buttons;
     private ConnectFourGrid connectFour;
     private JLabel winnerLabel;
+    private JLabel totalWinsLabel;
     private JPanel announcementPanel;
     private JPanel backgroundPanel;
+    private JPanel totalWinsPanel;
     private JFrame mainFrame;
 
     public ConnectFourGUI(){
@@ -48,12 +50,8 @@ public class ConnectFourGUI implements Observer{
             }
         });
 
-        JButton winsButton = new JButton("Total Player Wins");
-        startMenuButtons(winsButton);
-
         menuPanel.add(gameTitlePanel);
         menuPanel.add(newGameButton);
-        menuPanel.add(winsButton);
 
         mainFrame.add(menuPanel);
         mainFrame.setPreferredSize(new Dimension(600, 350));
@@ -156,10 +154,18 @@ public class ConnectFourGUI implements Observer{
         mainMenuButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                controller.userQuit();
                 new ConnectFourGUI();
                 gameFrame.dispose();
             }
         });
+
+        totalWinsLabel = new JLabel("Red Wins: "+controller.getRedWins()+"\nBlue Wins: "+controller.getYellowWins());
+        totalWinsLabel.setForeground(Color.YELLOW);
+
+        totalWinsPanel = new JPanel();
+        totalWinsPanel.setBackground(new Color(1, 50, 32));
+        totalWinsPanel.add(totalWinsLabel);
 
         winnerLabel = new JLabel(" ");
         winnerLabel.setFont(new Font("Monospace", Font.BOLD, 30));
@@ -184,6 +190,7 @@ public class ConnectFourGUI implements Observer{
             buttonPanel.add(playerButton);
         }
 
+        backgroundPanel.add(totalWinsPanel, BorderLayout.WEST);
         backgroundPanel.add(announcementPanel, BorderLayout.NORTH);
         backgroundPanel.add(buttonPanel, BorderLayout.CENTER);
         backgroundPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -222,6 +229,7 @@ public class ConnectFourGUI implements Observer{
         }
 
         if(this.connectFour.isGameOver()){
+            
             for(int col = 0; col < 7; col++){
                 for(int row = 0; row < 6; row++){
                     this.buttons[row][col].setEnabled(false);
@@ -236,6 +244,8 @@ public class ConnectFourGUI implements Observer{
                 this.connectFour.recordWin();
                 winnerLabel.setText("<html>Game Over - <font color='blue'>BLUE</font> Player Wins!</html>");
             }
+
+            updateTotalWins();
         }
     }
 
@@ -250,5 +260,9 @@ public class ConnectFourGUI implements Observer{
         }
 
         this.controller.resetGame();
+    }
+
+    private void updateTotalWins(){
+        totalWinsLabel.setText("Red Wins: "+controller.getRedWins()+"\nBlue Wins: "+controller.getYellowWins());
     }
 }
