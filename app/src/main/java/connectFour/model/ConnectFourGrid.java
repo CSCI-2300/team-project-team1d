@@ -82,7 +82,7 @@ public class ConnectFourGrid {
         if (winner == null){
             winner = getDiagonalWinner();
         }
-        
+
         return winner;   
     }
 
@@ -198,19 +198,19 @@ public class ConnectFourGrid {
     }
 
     public void recordWin(){
+        
         if(this.getWinner() == ConnectFourPiece.R){
             this.winners.increaseRedWins();
         }
         else if(this.getWinner() == ConnectFourPiece.Y){
             this.winners.increaseYellowWins();
         }
+        System.out.println(this.winners.numOfRedWins);
+        System.out.println(this.winners.numOfYellowWins);
     }
 
     public boolean isGameOver(){
         if((this.getWinner() != null) || (this.isFull())){
-            this.recordWin();
-            System.out.println(this.winners.numOfRedWins);
-            System.out.println(this.winners.numOfYellowWins);
             return true;
         } else{
             return false;

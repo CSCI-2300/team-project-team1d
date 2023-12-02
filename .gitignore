@@ -3,6 +3,8 @@ app/build*
 
 *.DS_Store
 
+*.dat
+
 # Ignore Gradle project-specific cache directory
 .gradle
 

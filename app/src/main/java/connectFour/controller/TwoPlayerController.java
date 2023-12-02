@@ -14,15 +14,16 @@ public class TwoPlayerController implements ControllerInterface{
     private Winners winners;
 
     public TwoPlayerController(ConnectFourGrid grid){
+        this.grid = grid;
+        this.winners = this.grid.winners;
+        this.currentPiece = ConnectFourPiece.R;
+
         try{
             loadFromFile();
         }
         catch (Exception error){
             System.out.println(error.getMessage());
         }
-        this.grid = grid;
-        this.winners = this.grid.winners;
-        this.currentPiece = ConnectFourPiece.R;
     }
 
     public void userPressed(int column){
@@ -56,8 +57,7 @@ public class TwoPlayerController implements ControllerInterface{
 
     public void userQuit(){
         try{
-            //String filePath = FileSelector.selectFileToSave();
-            FileOutputStream fileOutputStream = new FileOutputStream("winners.dat");
+            FileOutputStream fileOutputStream = new FileOutputStream("winners1.dat");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this.grid.winners);
             objectOutputStream.close();
@@ -69,12 +69,11 @@ public class TwoPlayerController implements ControllerInterface{
     }
 
     public void loadFromFile() throws IOException, ClassNotFoundException{
-        //String filePath = FileSelector.selectFileToLoad();
-        FileInputStream fileInputStream = new FileInputStream("winners.dat");
+        FileInputStream fileInputStream = new FileInputStream("winners1.dat");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         this.grid.winners = (Winners)objectInputStream.readObject();
         objectInputStream.close();
         fileInputStream.close();
-        System.out.println("Loaded from file");
+        System.out.println("Loaded from file two player");
     }
 }

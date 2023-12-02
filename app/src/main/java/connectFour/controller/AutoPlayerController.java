@@ -15,16 +15,16 @@ public class AutoPlayerController implements ControllerInterface{
     private AutoPlayerInterface autoPlayer;
 
     public AutoPlayerController(ConnectFourGrid grid, AutoPlayerInterface autoPlayer){
+        this.grid = grid;
+        this.currentPiece = ConnectFourPiece.R;
+        this.autoPlayer = autoPlayer;
+
         try{
             loadFromFile();
         }
         catch (Exception error){
             System.out.println(error.getMessage());
         }
-
-        this.grid = grid;
-        this.currentPiece = ConnectFourPiece.R;
-        this.autoPlayer = autoPlayer;
     }
 
     public void userPressed(int col){
@@ -55,8 +55,7 @@ public class AutoPlayerController implements ControllerInterface{
 
     public void userQuit(){
         try{
-            //String filePath = FileSelector.selectFileToSave();
-            FileOutputStream fileOutputStream = new FileOutputStream("winners.dat");
+            FileOutputStream fileOutputStream = new FileOutputStream("winners2.dat");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this.grid.winners);
             objectOutputStream.close();
@@ -68,12 +67,11 @@ public class AutoPlayerController implements ControllerInterface{
     }
 
     public void loadFromFile() throws IOException, ClassNotFoundException{
-        //String filePath = FileSelector.selectFileToLoad();
-        FileInputStream fileInputStream = new FileInputStream("winners.dat");
+        FileInputStream fileInputStream = new FileInputStream("winners2.dat");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         this.grid.winners = (Winners)objectInputStream.readObject();
         objectInputStream.close();
         fileInputStream.close();
-        System.out.println("Loaded from file");
+        System.out.println("Loaded from file autoplayer");
     }
 }

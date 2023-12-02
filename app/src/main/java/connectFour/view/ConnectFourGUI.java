@@ -144,6 +144,7 @@ public class ConnectFourGUI implements Observer{
         buttons = new CircleButton[6][7];
 
         JButton newGameButton = new JButton("Start Over");
+
         newGameButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
@@ -200,6 +201,7 @@ public class ConnectFourGUI implements Observer{
                 controller.userQuit();
             }
         });
+
         gameFrame.pack();
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setVisible(true);
@@ -228,8 +230,10 @@ public class ConnectFourGUI implements Observer{
             if(this.connectFour.getWinner()==null){
                 winnerLabel.setText("Game Over - TIE");
             } else if(this.connectFour.getWinner() == ConnectFourPiece.R){
+                this.connectFour.recordWin();
                 winnerLabel.setText("<html>Game Over - <font color='red'>RED</font> Player Wins!</html>");
             }else{
+                this.connectFour.recordWin();
                 winnerLabel.setText("<html>Game Over - <font color='blue'>BLUE</font> Player Wins!</html>");
             }
         }
