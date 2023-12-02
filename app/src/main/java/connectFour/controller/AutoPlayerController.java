@@ -15,7 +15,6 @@ public class AutoPlayerController implements ControllerInterface{
 
     public AutoPlayerController(ConnectFourGrid grid, AutoPlayerInterface autoPlayer){
         this.grid = grid;
-        this.winners = this.grid.winners;
         this.currentPiece = ConnectFourPiece.R;
         this.autoPlayer = autoPlayer;
 
@@ -25,6 +24,8 @@ public class AutoPlayerController implements ControllerInterface{
         catch (Exception error){
             System.out.println(error.getMessage());
         }
+
+        this.winners = this.grid.winners;
     }
 
     public void userPressed(int col){

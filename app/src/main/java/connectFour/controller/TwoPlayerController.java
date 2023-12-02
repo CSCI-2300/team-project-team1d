@@ -9,6 +9,7 @@ public class TwoPlayerController implements ControllerInterface{
     
     private ConnectFourGrid grid;
     private ConnectFourPiece currentPiece;
+    private Winners winners;
 
     public TwoPlayerController(ConnectFourGrid grid){
         this.grid = grid;
@@ -20,6 +21,8 @@ public class TwoPlayerController implements ControllerInterface{
         catch (Exception error){
             System.out.println(error.getMessage());
         }
+        
+        this.winners = this.grid.winners;
     }
 
     public void userPressed(int column){

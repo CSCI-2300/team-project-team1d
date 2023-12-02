@@ -3,8 +3,8 @@ package connectFour.model;
 import java.io.Serializable;
 
 public class Winners implements Serializable {
-    public int numOfRedWins;
-    public int numOfYellowWins;
+    private int numOfRedWins;
+    private int numOfYellowWins;
 
     public Winners(){
         numOfRedWins = 0;
