@@ -58,12 +58,6 @@ public class ConnectFourGUI implements Observer{
         mainFrame.add(menuPanel);
         mainFrame.setPreferredSize(new Dimension(600, 350));
 
-        mainFrame.addWindowListener(new WindowAdapter(){
-            public void windowClosing(WindowEvent e){
-                controller.userQuit();
-            }
-        });
-
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
@@ -200,6 +194,12 @@ public class ConnectFourGUI implements Observer{
         gameFrame.add(backgroundPanel, BorderLayout.CENTER);
         gameFrame.setPreferredSize(new Dimension(720, 630));
         gameFrame.add(optionsPanel, BorderLayout.SOUTH);
+
+        gameFrame.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                controller.userQuit();
+            }
+        });
         gameFrame.pack();
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setVisible(true);

@@ -14,6 +14,12 @@ public class TwoPlayerController implements ControllerInterface{
     private Winners winners;
 
     public TwoPlayerController(ConnectFourGrid grid){
+        try{
+            loadFromFile();
+        }
+        catch (Exception error){
+            System.out.println(error.getMessage());
+        }
         this.grid = grid;
         this.winners = this.grid.winners;
         this.currentPiece = ConnectFourPiece.R;
@@ -50,8 +56,8 @@ public class TwoPlayerController implements ControllerInterface{
 
     public void userQuit(){
         try{
-            String filePath = FileSelector.selectFileToSave();
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            //String filePath = FileSelector.selectFileToSave();
+            FileOutputStream fileOutputStream = new FileOutputStream("winners.dat");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this.grid.winners);
             objectOutputStream.close();
@@ -63,8 +69,8 @@ public class TwoPlayerController implements ControllerInterface{
     }
 
     public void loadFromFile() throws IOException, ClassNotFoundException{
-        String filePath = FileSelector.selectFileToLoad();
-        FileInputStream fileInputStream = new FileInputStream(filePath);
+        //String filePath = FileSelector.selectFileToLoad();
+        FileInputStream fileInputStream = new FileInputStream("winners.dat");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         this.grid.winners = (Winners)objectInputStream.readObject();
         objectInputStream.close();

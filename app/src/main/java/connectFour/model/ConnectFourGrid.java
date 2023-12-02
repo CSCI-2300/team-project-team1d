@@ -208,7 +208,9 @@ public class ConnectFourGrid {
 
     public boolean isGameOver(){
         if((this.getWinner() != null) || (this.isFull())){
-            recordWin();
+            this.recordWin();
+            System.out.println(this.winners.numOfRedWins);
+            System.out.println(this.winners.numOfYellowWins);
             return true;
         } else{
             return false;
