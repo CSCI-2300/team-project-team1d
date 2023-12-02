@@ -132,7 +132,7 @@ public class ConnectFourGUI implements Observer{
 
         JPanel buttonPanel = new JPanel(new GridLayout(6, 7,3,3));
         buttonPanel.setBackground(new Color(255, 255, 0));
-        buttonPanel.setPreferredSize(new Dimension(500, 450));
+        buttonPanel.setPreferredSize(new Dimension(500, 500));
 
         announcementPanel = new JPanel();
         announcementPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -159,7 +159,8 @@ public class ConnectFourGUI implements Observer{
             }
         });
 
-        totalWinsLabel = new JLabel("Red Wins: "+controller.getRedWins()+"\nBlue Wins: "+controller.getYellowWins());
+        totalWinsLabel = new JLabel("Red Wins: "+controller.getRedWins()+"\n Blue Wins: "+controller.getYellowWins());
+        totalWinsLabel.setFont(new Font("Monospace", Font.BOLD, 25));
         totalWinsLabel.setForeground(Color.YELLOW);
 
         totalWinsPanel = new JPanel();
@@ -167,7 +168,7 @@ public class ConnectFourGUI implements Observer{
         totalWinsPanel.add(totalWinsLabel);
 
         winnerLabel = new JLabel(" ");
-        winnerLabel.setFont(new Font("Monospace", Font.BOLD, 30));
+        winnerLabel.setFont(new Font("Monospace", Font.BOLD, 35));
         winnerLabel.setForeground(Color.WHITE);
         announcementPanel.add(winnerLabel);
 
@@ -189,8 +190,10 @@ public class ConnectFourGUI implements Observer{
             buttonPanel.add(playerButton);
         }
 
-        backgroundPanel.add(totalWinsPanel, BorderLayout.WEST);
-        backgroundPanel.add(announcementPanel, BorderLayout.NORTH);
+        backgroundPanel.setLayout(new BorderLayout());
+
+        backgroundPanel.add(totalWinsPanel, BorderLayout.NORTH);
+        backgroundPanel.add(announcementPanel, BorderLayout.SOUTH);
         backgroundPanel.add(buttonPanel, BorderLayout.CENTER);
         backgroundPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -199,7 +202,7 @@ public class ConnectFourGUI implements Observer{
         optionsPanel.add(mainMenuButton);
 
         gameFrame.add(backgroundPanel, BorderLayout.CENTER);
-        gameFrame.setPreferredSize(new Dimension(720, 630));
+        gameFrame.setPreferredSize(new Dimension(720, 720));
         gameFrame.add(optionsPanel, BorderLayout.SOUTH);
 
         gameFrame.addWindowListener(new WindowAdapter(){
@@ -262,6 +265,6 @@ public class ConnectFourGUI implements Observer{
     }
 
     private void updateTotalWins(){
-        totalWinsLabel.setText("Red Wins: "+controller.getRedWins()+"\nBlue Wins: "+controller.getYellowWins());
+        totalWinsLabel.setText("Red Wins: "+controller.getRedWins()+"\n Blue Wins: "+controller.getYellowWins());
     }
 }
