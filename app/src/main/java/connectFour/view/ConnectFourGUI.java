@@ -2,7 +2,6 @@ package connectFour.view;
 
 import connectFour.ControllerInterface;
 import connectFour.Observer;
-import connectFour.view.*;
 import connectFour.model.*;
 import connectFour.controller.*;
 
@@ -227,6 +226,7 @@ public class ConnectFourGUI implements Observer{
                     this.buttons[row][col].setEnabled(false);
                 }
             }
+
             if(this.connectFour.getWinner()==null){
                 winnerLabel.setText("Game Over - TIE");
             } else if(this.connectFour.getWinner() == ConnectFourPiece.R){
@@ -240,7 +240,6 @@ public class ConnectFourGUI implements Observer{
     }
 
     private void startNewGame(){
-
         winnerLabel.setText(" ");
 
         for(int col = 0; col < 7; col++){

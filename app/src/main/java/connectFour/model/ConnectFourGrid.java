@@ -4,7 +4,6 @@ import connectFour.Observer;
 
 import java.util.ArrayList;
 
-
 public class ConnectFourGrid {
     private ConnectFourPiece[][] grid;
     public Winners winners;
@@ -24,9 +23,9 @@ public class ConnectFourGrid {
         return -1;
     }
 
-    public ArrayList<Integer> getOpenCols()
-    {
+    public ArrayList<Integer> getOpenCols(){
         ArrayList<Integer> openCols = new ArrayList<Integer>();
+        
         for(int col = 0; col < 7; col++)
         {
             if(this.getNextSpace(col) != -1)
@@ -39,6 +38,7 @@ public class ConnectFourGrid {
 
     public boolean placePiece(ConnectFourPiece piece, int column){   //returns true if piece is placed successfully
         int row = getNextSpace(column);
+
         if(row != -1){
             grid[row][column] = piece;
             notifyObservers();
@@ -193,7 +193,7 @@ public class ConnectFourGrid {
                 }
             }
         }
-        
+
         return winner;
     }
 
@@ -205,8 +205,6 @@ public class ConnectFourGrid {
         else if(this.getWinner() == ConnectFourPiece.Y){
             this.winners.increaseYellowWins();
         }
-        System.out.println(this.winners.numOfRedWins);
-        System.out.println(this.winners.numOfYellowWins);
     }
 
     public boolean isGameOver(){

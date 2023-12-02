@@ -35,8 +35,7 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
         grid.placePiece(computerPiece, nextMove);
     }
 
-    private ArrayList<Integer> buildPossibleMoves()
-    {
+    private ArrayList<Integer> buildPossibleMoves(){
         ArrayList<Integer> possibleMoves = grid.getOpenCols();
         possibleMoves.add(playerLastMove);
         possibleMoves.addAll(this.buildStrategicMoves(playerLastMove, defenseiveEmphasis));
@@ -51,11 +50,9 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
             strategicMoves.add(lastMove);
             if(lastMove == 0){
                 strategicMoves.add(1);
-            }
-            else if(lastMove == 5){
+            } else if(lastMove == 5){
                 strategicMoves.add(4);
-            }
-            else{
+            } else{
                 strategicMoves.add(lastMove + 1);
                 strategicMoves.add(lastMove - 1);
             }
