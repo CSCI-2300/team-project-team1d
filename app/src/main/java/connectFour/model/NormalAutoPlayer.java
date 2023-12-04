@@ -20,8 +20,8 @@ public class NormalAutoPlayer implements AutoPlayerInterface{
         Random rand = new Random();
         this.computerLastMove = rand.nextInt(6);
         this.playerLastMove = rand.nextInt(6);
-        this.offensiveEmphasis = 100;
-        this.defenseiveEmphasis = 0;
+        this.offensiveEmphasis = 4;
+        this.defenseiveEmphasis = 4;
     }
 
     public void makeNextMove(){
